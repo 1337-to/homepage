@@ -1,0 +1,101 @@
+<html></html>
+   <head>
+      <title>Finding Host...</title>
+      <style> body{ margin:0; padding:0; width:100%; height:100%; color:#b0bec5; display:table; font-weight:100; font-family:Lato } .container{ text-align:center; display:table-cell; vertical-align:middle } .content{ text-align:center; display:inline-block } .message{ font-size:80px; margin-bottom:40px } .submessgae{ font-size:40px; margin-bottom:40px } .copyright{ font-size:20px; } a{ text-decoration:none; color:#3498db } </style>
+   </head>
+   <body>
+      <div class="container">
+         <div class="content">
+            <div class="message">Host Lookup</div>
+            <div id="status" class="submessgae">Looking for Hosts...</div>
+            <div class="copyright">Skynet Systems</div>
+         </div>
+      </div>
+      <script>
+        // Load hosts.json and start the request chain
+        let searchParams = new URLSearchParams(window.location.search);
+        let path = searchParams.get('path');
+        let statusElement = document.getElementById('status');
+        function loadHostsAndSendRequest() {
+            fetch('https://1337x.cdn.zindex.eu.org/hosts.json')
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.length > 0) {
+                        // Start trying each host
+                        tryHost(data, 0, statusElement);
+                    } else {
+                        statusElement.textContent = "No hosts found.";
+                    }
+                })
+                .catch(err => {
+                    console.error("Failed to load hosts.json", err);
+                    statusElement.textContent = "Error loading host data.";
+                });
+        }
+    
+        function tryHost(hosts, index, statusElement) {
+            if (index >= hosts.length) {
+                statusElement.textContent = "No valid hosts found.";
+                return;
+            }
+    
+            const randomHost = hosts[index];
+            const url = `https://example.${randomHost}.workers.dev/1337x.js`;
+    
+            // Update status to show we're trying a new host
+            statusElement.textContent = `Trying host ${index + 1} (${randomHost})...`;
+    
+            fetch(url)
+                .then(response => {
+                    if (response.status === 200) {
+                        statusElement.textContent = `😊 Found best domain for you: ${randomHost}`;
+                        
+                        // Check for the ?path= search parameter
+    
+                        if (path) {
+                            let finalUrl = `https://example.${randomHost}.workers.dev${path}`;
+                            setTimeout(() => {
+                                window.location.href = finalUrl; // Redirect to the final URL
+                            }, 2000); // Delay the redirect by 2 seconds to show the success message
+                        } else {
+                            statusElement.textContent = "Invalid request: No path provided in URL";
+                        }
+                    } else {
+                        console.error(`Request to ${url} failed, trying next host...`);
+                        setTimeout(() => {
+                            tryHost(hosts, index + 1, statusElement); // Retry with the next host
+                        }, 1000); // Delay the retry by 1 second
+                        tryHost(hosts, index + 1, statusElement); // Retry with the next host
+                    }
+                })
+                .catch(err => {
+                    console.error(`Error trying ${url}, trying next host...`, err);
+                    tryHost(hosts, index + 1, statusElement); // Retry with the next host
+                });
+        }
+    
+    
+                        if (!path) {
+                            statusElement.textContent = "No path provided in URL, redirecting to homepage...";
+                            setTimeout(() => {
+                                window.location.href = `https://1337x.hashhackers.com/`; // Redirect to homepage
+                            }, 5000); // Delay the redirect by 2 seconds to show the message
+                        } else {
+                            if (path.startsWith('/')) {
+                                loadHostsAndSendRequest(); // Start the process
+                            } else {
+                                statusElement.textContent = "Invalid Request, redirecting to homepage...";
+                                setTimeout(() => {
+                                    window.location.href = `https://1337x.hashhackers.com/`; // Redirect to homepage
+                                }, 5000); // Delay the redirect by 2 seconds to show the message
+                            }
+                        }
+    
+        // Reload the page after 5 minutes
+        setTimeout(function() {
+            location.reload();
+        }, 300000);
+    </script>
+   </body>
+</html>
+
