@@ -87,7 +87,7 @@
                                 window.location.href = `https://1337x.hashhackers.com/`; // Redirect to homepage
                             }, 5000); // Delay the redirect by 2 seconds to show the message
                         } else {
-                            if (path.startsWith('/')) {
+                            if (path && path.startsWith('/')) {
                                 loadHostsAndSendRequest(); // Start the process
                             } else if (search) {
                                 loadHostsAndSendRequest(); // Start the process
