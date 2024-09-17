@@ -42,7 +42,7 @@
         }
 
         const random = Math.floor(Math.random() * hosts.length);
-        const randomHost = hosts[index];
+        const randomHost = hosts[random];
         const url = `https://example.${randomHost}.workers.dev/1337x.js`;
 
         // Update status to show we're trying a new host
