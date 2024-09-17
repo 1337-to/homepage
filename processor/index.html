@@ -15,6 +15,7 @@
         // Load hosts.json and start the request chain
         let searchParams = new URLSearchParams(window.location.search);
         let path = searchParams.get('path');
+        let search = searchParams.get('search');
         let statusElement = document.getElementById('status');
         function loadHostsAndSendRequest() {
             fetch('https://1337x.cdn.zindex.eu.org/hosts.json')
@@ -57,6 +58,11 @@
                             setTimeout(() => {
                                 window.location.href = finalUrl; // Redirect to the final URL
                             }, 2000); // Delay the redirect by 2 seconds to show the success message
+                        } else if (search) {
+                            let finalUrl = `https://example.${randomHost}.workers.dev/${Date.now()}/srch?search=` + encodeURIComponent(search);
+                            setTimeout(() => {
+                                window.location.href = finalUrl; // Redirect to the final URL
+                            }, 2000); // Delay the redirect by 2 seconds to show the success message
                         } else {
                             statusElement.textContent = "Invalid request: No path provided in URL";
                         }
@@ -75,13 +81,15 @@
         }
     
     
-                        if (!path) {
+                        if (!path || !search) {
                             statusElement.textContent = "No path provided in URL, redirecting to homepage...";
                             setTimeout(() => {
                                 window.location.href = `https://1337x.hashhackers.com/`; // Redirect to homepage
                             }, 5000); // Delay the redirect by 2 seconds to show the message
                         } else {
                             if (path.startsWith('/')) {
+                                loadHostsAndSendRequest(); // Start the process
+                            } else if (search) {
                                 loadHostsAndSendRequest(); // Start the process
                             } else {
                                 statusElement.textContent = "Invalid Request, redirecting to homepage...";
