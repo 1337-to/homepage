@@ -43,7 +43,7 @@
 
         const random = Math.floor(Math.random() * hosts.length);
         const randomHost = hosts[random];
-        const url = `https://unblock.${randomHost}.workers.dev/1337x.js`;
+        const url = `https://example.${randomHost}.workers.dev/1337x.js`;
 
         // Update status to show we're trying a new host
         statusElement.textContent = `Trying host ${index + 1} (${randomHost})...`;
@@ -56,12 +56,12 @@
 
                 // Check for the ?path= or ?search= search parameter
                 if (path) {
-                    let finalUrl = `https://unblock.${randomHost}.workers.dev${path}`;
+                    let finalUrl = `https://example.${randomHost}.workers.dev${path}`;
                     setTimeout(() => {
                         window.location.href = finalUrl; // Redirect to the final URL
                     }, 2000); // Delay the redirect by 2 seconds to show the success message
                 } else if (search) {
-                    let finalUrl = `https://unblock.${randomHost}.workers.dev/${Date.now()}/srch?search=` + encodeURIComponent(search);
+                    let finalUrl = `https://example.${randomHost}.workers.dev/${Date.now()}/srch?search=` + encodeURIComponent(search);
                     setTimeout(() => {
                         window.location.href = finalUrl; // Redirect to the final URL
                     }, 2000); // Delay the redirect by 2 seconds to show the success message
