@@ -43,7 +43,7 @@
 
         const random = Math.floor(Math.random() * hosts.length);
         const randomHost = hosts[random];
-        const current_services = ["unblock", "old-gods"]
+        const current_services = ["old-gods"]
         let current_service = current_services[Math.floor(Math.random() * current_services.length)];
         const url = `https://${current_service}.${randomHost}.workers.dev/1337x.js`;
 
