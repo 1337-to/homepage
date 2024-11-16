@@ -1,8 +1,6 @@
-# 1337x-homepage
+# Moved Because unable to find cf accounts or related services
 
-* HTML Homepage for 1337x.hashhackers.com Proxy websites. Doesn't violate any laws as doesn't contains any Copyrighted content.
-
-[![](https://data.jsdelivr.com/v1/package/gh/1337-to/1337x-homepage/badge/day)](https://1337x.hashhackers.com)
-[![](https://data.jsdelivr.com/v1/package/gh/1337-to/1337x-homepage/badge/week)](https://1337x.hashhackers.com)
-[![](https://data.jsdelivr.com/v1/package/gh/1337-to/1337x-homepage/badge/month)](https://1337x.hashhackers.com)
-[![](https://data.jsdelivr.com/v1/package/gh/1337-to/1337x-homepage/badge/year)](https://1337x.hashhackers.com)
+* https://1337x-to-1.pages.dev - Available Now
+* https://1337x-to.pages.dev - Unable to Reach
+* https://justaproxy.pages.dev - Moved
+* https://1337x-to-proxy.pages.dev - Moved
